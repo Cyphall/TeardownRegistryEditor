@@ -1,0 +1,4 @@
+name = Registry Editor
+author = Cyphall
+description = Browse and edit registry values.
+tags = Tool
