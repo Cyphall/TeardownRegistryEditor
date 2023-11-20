@@ -1,0 +1,8 @@
+Browse and edit registry values.
+
+Press F10 to open the editor.
+Press F10 to open the editor.
+
+Source code is available on [url=https://github.com/Cyphall/TeardownRegistryEditor]GitHub[/url]
+
+Note: The key for the / character is not recognized by the game, so as a workaround, you can press F1 to write this character.
