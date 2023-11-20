@@ -321,9 +321,9 @@ function UiTextBox:get_text()
 	return self._text
 end
 
-function UiTextBox:set_text(text)
+function UiTextBox:set_text(text, move_cursor_to_end)
 	self._text = text
-	self._cursor_pos = 0
+	self._cursor_pos = move_cursor_to_end and string.len(text) or 0
 end
 
 function UiTextBox:has_focus()

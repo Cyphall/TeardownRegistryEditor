@@ -299,7 +299,7 @@ function draw_node(node_path, node_name, current_offset)
 					UiAlign("left top")
 					if UiBlankButton(last_max_value_width, grid_row_height) and not InputReleased("return") then
 						edit_value_text_box = UiTextBox:new(last_max_value_width)
-						edit_value_text_box:set_text(GetString(node_path))
+						edit_value_text_box:set_text(GetString(node_path), true)
 						edit_value_text_box:set_focus(true)
 						currently_edited_node = node_path
 					end
