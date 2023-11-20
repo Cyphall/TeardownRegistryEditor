@@ -274,51 +274,49 @@ function draw_node(node_path, node_name, current_offset)
 	local value_used_width = 0
 
 	-- value
-	if #children == 0 then
-		UiPush()
-			UiTranslate(last_max_key_width + 1, 0)
+	UiPush()
+		UiTranslate(last_max_key_width + 1, 0)
 
-			if currently_edited_node == node_path then
-				if edit_value_text_box:has_focus() and not submit_pressed then
-					UiPush()
-						UiFont("regular.ttf", grid_row_height)
-						edit_value_text_box:draw()
-						value_used_width = value_used_width + edit_value_text_box:get_width()
-					UiPop()
-				else
-					SetString(node_path, edit_value_text_box:get_text())
-					edit_value_text_box = nil
-					currently_edited_node = nil
-					submit_pressed = false
-				end
-			end
-
-			if currently_edited_node ~= node_path then
-				-- button behavior
+		if currently_edited_node == node_path then
+			if edit_value_text_box:has_focus() and not submit_pressed then
 				UiPush()
-					UiAlign("left top")
-					if UiBlankButton(last_max_value_width, grid_row_height) and not InputReleased("return") then
-						edit_value_text_box = UiTextBox:new(last_max_value_width)
-						edit_value_text_box:set_text(GetString(node_path), true)
-						edit_value_text_box:set_focus(true)
-						currently_edited_node = node_path
-					end
-				UiPop()
-
-				UiTranslate(value_left_padding, 0)
-
-				UiPush()
-					UiAlign("left top")
 					UiFont("regular.ttf", grid_row_height)
-					UiColor(0.9, 0.9, 0.5)
-					UiTextUniformHeight(true)
-
-					local text_width, text_height, _, _ = UiText(GetString(node_path))
-					value_used_width = value_used_width + value_left_padding + text_width + value_right_padding
+					edit_value_text_box:draw()
+					value_used_width = value_used_width + edit_value_text_box:get_width()
 				UiPop()
+			else
+				SetString(node_path, edit_value_text_box:get_text())
+				edit_value_text_box = nil
+				currently_edited_node = nil
+				submit_pressed = false
 			end
-		UiPop()
-	end
+		end
+
+		if currently_edited_node ~= node_path then
+			-- button behavior
+			UiPush()
+				UiAlign("left top")
+				if UiBlankButton(last_max_value_width, grid_row_height) and not InputReleased("return") then
+					edit_value_text_box = UiTextBox:new(last_max_value_width)
+					edit_value_text_box:set_text(GetString(node_path), true)
+					edit_value_text_box:set_focus(true)
+					currently_edited_node = node_path
+				end
+			UiPop()
+
+			UiTranslate(value_left_padding, 0)
+
+			UiPush()
+				UiAlign("left top")
+				UiFont("regular.ttf", grid_row_height)
+				UiColor(0.9, 0.9, 0.5)
+				UiTextUniformHeight(true)
+
+				local text_width, text_height, _, _ = UiText(GetString(node_path))
+				value_used_width = value_used_width + value_left_padding + text_width + value_right_padding
+			UiPop()
+		end
+	UiPop()
 
 	current_max_value_width = math.max(current_max_value_width, value_used_width)
 
